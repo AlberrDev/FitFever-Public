@@ -1,0 +1,24 @@
+export function getIsAdminFromCookie() {
+    let isAdmin = false;
+
+    // Obtener las cookies
+    const cookies = document.cookie;
+
+    // Verificar si existe la cookie "userInfo"
+    if (cookies.indexOf("userInfo") !== -1) {
+        // Obtener el valor de la cookie "userInfo"
+        const TokensUser = cookies
+            .split('; ')
+            .find(row => row.startsWith('userInfo='))
+            .split('=')[1];
+        // Convertir el valor de la cookie en un objeto JavaScript
+        const userInfo = JSON.parse(TokensUser);
+        // Asignar el valor de isAdmin
+        isAdmin = userInfo.isAdmin;
+        // Imprimir el valor de isAdmin
+    } else {
+        console.log('No se encontró la cookie.');
+    }
+
+    return isAdmin;
+}

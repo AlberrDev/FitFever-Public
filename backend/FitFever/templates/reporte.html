@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte Semanal de Consumo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reporte Semanal de Consumo</h1>
+    <p>Del {{ start_of_week }} al {{ end_of_week }}</p>
+    <p>Calorías Globales: {{ calorias_globales }}</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Calorías</th>
+                <th>Grasas</th>
+                <th>Carbohidratos</th>
+                <th>Proteínas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fecha, datos in datos_semanales.items %}
+            <tr>
+                <td>{{ fecha }}</td>
+                <td>{{ datos.total_calorias|default_if_none:"" }}</td>
+                <td>{{ datos.total_grasas|default_if_none:"" }}</td>
+                <td>{{ datos.total_carbohidratos|default_if_none:"" }}</td>
+                <td>{{ datos.total_proteinas|default_if_none:"" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

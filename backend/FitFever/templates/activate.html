@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Cuenta FitFever</title>
+    <style>
+        /* Estilos CSS en línea */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #9f7aea;
+            /* Morado más suave */
+            color: white;
+            /* Texto en blanco */
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            /* Elimina el borde */
+            cursor: pointer;
+            /* Cambia el cursor al pasar por encima */
+            transition: background-color 0.3s ease;
+            /* Transición suave para el cambio de color */
+        }
+
+        .button:hover {
+            background-color: #805ad5;
+            /* Cambia el color al pasar el mouse */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Verificación de Cuenta FitFever</h1>
+        <div class="content">
+            <p>Hola {{ user }},</p>
+            <p>Por favor, haz clic en el siguiente botón para verificar tu cuenta:</p>
+            <button class="button">
+                <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}"
+                    style="color: inherit; text-decoration: none;">Verificar cuenta</a>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

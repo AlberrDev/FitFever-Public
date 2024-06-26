@@ -1,0 +1,58 @@
+services: 
+
+  django:
+    depends_on:
+      db:
+        condition: service_healthy
+    build: ./backend 
+    ports:
+      - ${HTTP_PUERTO}:8000
+    container_name: ${NOMBRE_APP}_websrv
+    networks:
+      - interna
+    restart: always 
+    environment:
+      POSTGRES_DB: ${BD_NOMBRE}
+      POSTGRES_USER: ${BD_USUARIO}
+      POSTGRES_PASSWORD: ${BD_USER_PASSWORD}
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      #Quitar esto para produccion
+    volumes: 
+      - ./backend/FitFever:/usr/src/app
+
+  db:
+    image: postgres:latest
+    container_name: ${NOMBRE_APP}_database
+    networks:
+      - interna
+    ports:
+      - ${POSTGRES_PORT}:5432
+    environment:
+      POSTGRES_DB: ${BD_NOMBRE}
+      POSTGRES_USER: ${BD_USUARIO}
+      POSTGRES_PASSWORD: ${BD_USER_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${BD_USUARIO} -d ${BD_NOMBRE}"]
+      interval: 10s
+      timeout: 1m
+      retries: 5
+      start_period: 40s
+  
+  frontend:
+    build: ./frontend
+    container_name: ${NOMBRE_APP}_front
+    ports:
+      - 3000:3000
+    networks:
+      - interna
+    restart: always
+
+
+networks:
+  interna:
+    name: ${NOMBRE_APP}_red
+      
+volumes:
+  basedatos:
+    name: ${NOMBRE_APP}_basedatos
