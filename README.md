@@ -4,7 +4,8 @@
 </div>
 <div align="center">
 
-[![FitFever](https://img.shields.io/badge/FitFever-000000?style=for-the-badge&logo=vercel&logoColor=white&labelColor=101010)](https://fit-fever.vercel.app/)
+[![FitFever](https://img.shields.io/badge/FitFever-Off-red?style=for-the-badge&logo=vercel&logoColor=white&labelColor=101010)](https://fit-fever.vercel.app/)
+
 </div>
 
 ## Descripción
